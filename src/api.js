@@ -28,9 +28,9 @@ var buildApi = function (config, http) {
 		resource.list = function (queryString, config) {
 			return http.get(addTimestamp(createUrl(parent, resourceName, undefined, queryString), queryString), config);
 		};
-		resource.save = function (data, queryString, config) {
+		resource.save = function (data, queryString, config, id) {
 			if (options.beforeSave) data = options.beforeSave(data);
-			return http.post(createUrl(parent, resourceName, undefined, queryString), data, config);
+			return http.post(createUrl(parent, resourceName, id, queryString), data, config);
 		};
 		resource.update = function (id, data, queryString, config) {
 			return http.put(createUrl(parent, resourceName, id, queryString), data, config);
